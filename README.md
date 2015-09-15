@@ -8,7 +8,10 @@ The current configuration is:
 - (1) OSEPP Motor Control Board
 - (4) DC motors
 
-## Scratch Directory
+## Why WALL3E?
+My wife said it looked kind of like WALL-E but with three pairs of eyes. Also, why not?
+
+# Scratch Directory
 The Scratch Directory contains small snippets of code used to test various parts of development. Code from projects in there may or may not be in the main project code, but it applied to something that was being explored, such as NRF2401 wireless communication, Joystick remote control, etc.
 
 
