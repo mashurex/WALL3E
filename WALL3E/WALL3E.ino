@@ -1,4 +1,7 @@
 #include <AFMotor.h>
+#include <Wire.h>
+
+#define I2C_ADDR 9
 
 const uint8_t LEFT_SIDE = 1;
 const uint8_t RIGHT_SIDE = 2;
