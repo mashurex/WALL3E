@@ -1,7 +1,7 @@
 
 /**
- * Sample sketch for taking joystick input, encoding it, and transmitting over
- * radio via NRF24L01+.
+ * Sketch for taking joystick input, encoding it, and transmitting over
+ * radio via NRF24L01+ using an Arduino Uno.
  */
 
 #include <SPI.h>
