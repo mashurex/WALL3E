@@ -4,6 +4,8 @@
  * Code for an Arduino Uno connected to an NRF240L1 receiver that will
  * receive instructions from a transmitter and send them to another 
  * microcontroller over I2C.
+ * 
+ * Created by Mustafa Ashurex <ashurexm@gmail.com> 
  */
 #include <SPI.h>
 #include <RF24.h>
@@ -13,7 +15,7 @@
 #define PIN_RDO_CS 7
 #define PIN_RDO_CSN 8
 
-// I2C transmission address.
+// I2C address to transmit data to.
 #define I2C_ADDR 9
 
 // Buffer index position to check for message validity.
@@ -26,7 +28,7 @@ void setup()
 {
   Serial.begin(115200);
 
-  Wire.begin();
+  Wire.begin();  
   Serial.println(F("I2C wire started..."));
   
   radio.begin();
@@ -35,37 +37,32 @@ void setup()
   Serial.println(F("Radio listening..."));
 }
 
-char radioBuffer[10] = {0};
+char radioBuffer[14] = {0};
 bool isListeningStatus = true;
+bool requestCalled = false;
 
 void loop() 
-{
-    
+{    
   if(radio.available())
   {    
     radio.read(&radioBuffer, sizeof(radioBuffer));
     
     if(radioBuffer[BUF_IDX_CHECK] != '+' && radioBuffer[BUF_IDX_CHECK] != '-')
     {
-      Serial.print(F("Bad read: "));
-      Serial.println(radioBuffer);
-        
+      Serial.println(F("BAD READ"));
     }
     else
     {  
-      stopListening();
-      
-      // Proxy the radio buffer to the I2C channel.
+      Serial.println(radioBuffer);
       Wire.beginTransmission(I2C_ADDR);
       Wire.write(radioBuffer);
       Wire.endTransmission();
-
-      Serial.println(radioBuffer);
     }
   }
   
   if(!isListening()){ startListening(); }
-  delay(10);
+    
+  delay(50);
 }
 
 void stopListening()
