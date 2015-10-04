@@ -15,37 +15,37 @@
 #define MAX17043_ADDRESS 0x36
 
 // Controller shield pins.
-#define PIN_VERT = A1;
-#define PIN_HORIZ = A0;
-#define PIN_PUSH = 2;
-#define PIN_BTN_RIGHT = 3;
-#define PIN_BTN_UP = 4;
-#define PIN_BTN_DOWN = 5;
-#define PIN_BTN_LEFT = 6;
+#define PIN_VERT A1
+#define PIN_HORIZ A0
+#define PIN_PUSH 2
+#define PIN_BTN_RIGHT 3
+#define PIN_BTN_UP 4
+#define PIN_BTN_DOWN 5
+#define PIN_BTN_LEFT 6
 
 // Radio pins.
-#define PIN_CE = 7;
-#define PIN_CSN = 8;
+#define PIN_CE 7
+#define PIN_CSN 8
 
 // General resting (centered) values for the joystick.
-#define REST_Y = 515;
-#define REST_X = 518;
+#define REST_Y 515
+#define REST_X 518
 
 // Min/max analog value ranges for the joystick axes.
-#define MAX_JOYSTICK = 1023;
-#define MIN_JOYSTICK = 0;
+#define MAX_JOYSTICK 1023
+#define MIN_JOYSTICK 0
 
 // +/- Input value floating range.
-#define FLT_JOYSTICK = 5;
+#define FLT_JOYSTICK 5
 
-#define MIN_SPEED = 0;
-#define MAX_SPEED = 255;
+#define MIN_SPEED 0
+#define MAX_SPEED 255
 
-#define DIR_FORWARD = 1;
-#define DIR_BACKWARD = 2;
-#define DIR_LEFT = 3;
-#define DIR_RIGHT = 4;
-#define DIR_NONE = 0;
+#define DIR_FORWARD 1
+#define DIR_BACKWARD 2
+#define DIR_LEFT 3
+#define DIR_RIGHT 4
+#define DIR_NONE 0
 
 byte addresses[][6] = {"1Node","2Node"};
 
@@ -57,7 +57,7 @@ float batteryVoltage;
 float batteryPercentage;
 bool batteryAlert = false;
 byte batteryTestCnt = 0;
-bool batteryMode = true;
+bool batteryMode = false;
 
 void setup() 
 {
@@ -82,9 +82,9 @@ void setup()
   Wire.begin();
   delay(100);
   
-  configMAX17043(32);
-  qsMAX17043();
-  Serial.println(F("I2C Battery Monitor initialized..."));
+  // configMAX17043(32);
+  // qsMAX17043();
+  // Serial.println(F("I2C Battery Monitor initialized..."));
 
   // Disable trying to read battery data when serial available,
   // because there will not be a battery plugged in.
